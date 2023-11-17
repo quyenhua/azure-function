@@ -1,0 +1,14 @@
+/obj
+/src/Application/obj
+/src/Application/bin
+/src/Domain/obj
+/src/Domain/bin
+/src/Infrastructure/obj
+/src/Infrastructure/bin
+/tests/Application.IntegrationTests/obj
+/tests/Application.IntegrationTests/bin
+/tests/Application.UnitTests/obj
+/tests/Application.UnitTests/bin
+/tests/Domain.UnitTests/obj
+/tests/Domain.UnitTests/bin
+/.vs

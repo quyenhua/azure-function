@@ -5,7 +5,7 @@ using FluentValidation;
 
 namespace Application.Features.Validators;
 
-public class UpdateTodoItemCommandValidator : AbstractValidator<UpdateCommand<TodoItem>>
+public class UpdateTodoItemCommandValidator : AbstractValidator<UpdateCommand<Todo>>
 {
     public UpdateTodoItemCommandValidator()
     {

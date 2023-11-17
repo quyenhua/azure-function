@@ -14,7 +14,7 @@ namespace Application.Features.IntegrationTests.TodoItems.Commands
         [Test]
         public void ShouldRequireValidTodoItemId()
         {
-            var command = new DeleteCommand<TodoItem> { Id = 99 };
+            var command = new DeleteCommand<Todo> { Id = 99 };
 
             FluentActions.Invoking(() =>
                 SendAsync(command)).Should().ThrowAsync<NotFoundException>();
@@ -23,29 +23,29 @@ namespace Application.Features.IntegrationTests.TodoItems.Commands
         [Test]
         public async Task ShouldDeleteTodoItem()
         {
-            var listId = await SendAsync(new CreateCommand<TodoList>
+            var listId = await SendAsync(new CreateCommand<ListTodo>
             {
-                Entity = new TodoList
+                Entity = new ListTodo
                 {
                     Title = "New List"
                 }
             });
 
-            var itemId = await SendAsync(new CreateCommand<TodoItem>
+            var itemId = await SendAsync(new CreateCommand<Todo>
             {
-                Entity = new TodoItem
+                Entity = new Todo
                 {
                     ListId = listId,
                     Title = "New Item"
                 }
             });
 
-            await SendAsync(new DeleteCommand<TodoItem>
+            await SendAsync(new DeleteCommand<Todo>
             {
                 Id = itemId
             });
 
-            var list = await FindAsync<TodoItem>(listId);
+            var list = await FindAsync<Todo>(listId);
 
             list.Should().BeNull();
         }

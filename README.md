@@ -29,7 +29,7 @@ Prerequisites that we need to have installed before using Petcare API.
 1. Clone the repository:
 
 ```bash
-git clone http://<azure-function-github>.git
+git clone https://github.com/quyenhua/azure-function.git
 cd azure-function
 ```
 

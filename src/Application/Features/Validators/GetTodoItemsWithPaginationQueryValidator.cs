@@ -6,7 +6,7 @@ using Application.Models.Responses;
 
 namespace Application.Features.Validators;
 
-public class GetTodoItemsWithPaginationQueryValidator : AbstractValidator<GetWithPaginationQuery<TodoItem, TodoItemDto>>
+public class GetTodoItemsWithPaginationQueryValidator : AbstractValidator<GetWithPaginationQuery<Todo, TodoItemDto>>
 {
     public GetTodoItemsWithPaginationQueryValidator()
     {

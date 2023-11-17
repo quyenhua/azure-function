@@ -37,5 +37,5 @@ class Program
 
 internal class CurrentUserService : ICurrentUserService
 {
-    public string UserId => "Me";
+    public string UserId => "";
 }

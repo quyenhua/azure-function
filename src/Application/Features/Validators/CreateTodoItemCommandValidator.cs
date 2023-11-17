@@ -5,7 +5,7 @@ using Application.Features.Generics.Commands;
 
 namespace Application.Features.Validators;
 
-public class CreateTodoItemCommandValidator : AbstractValidator<CreateCommand<TodoItem>>
+public class CreateTodoItemCommandValidator : AbstractValidator<CreateCommand<Todo>>
 {
     public CreateTodoItemCommandValidator()
     {

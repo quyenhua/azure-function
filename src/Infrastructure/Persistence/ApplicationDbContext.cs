@@ -23,9 +23,9 @@ public class ApplicationDbContext(
     private readonly IDateTime _dateTime = dateTime;
     private readonly IDomainEventService _domainEventService = domainEventService;
 
-    public DbSet<TodoItem> TodoItems { get; set; }
+    public DbSet<Todo> TodoItems { get; set; }
 
-    public DbSet<TodoList> TodoLists { get; set; }
+    public DbSet<ListTodo> TodoLists { get; set; }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {

@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities;
 
-[Table(nameof(TodoItem))]
-public class TodoItem : AuditableEntity, IHasDomainEvent
+[Table(nameof(Todo))]
+public class Todo : AuditableEntity, IHasDomainEvent
 {
-    public TodoList List { get; set; }
+    public ListTodo List { get; set; }
 
     public int ListId { get; set; }
 

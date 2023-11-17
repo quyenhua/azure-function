@@ -34,10 +34,10 @@ public static class DependencyInjection
     private static void AddMediator(this IServiceCollection services)
     {
         services
-            .AddScopedMediatR<TodoList>()
-            .AddScopedMediatR<TodoItem>()
-            .AddScoped<IRequestHandler<GetWithPaginationQuery<TodoItem, TodoItemDto>, PaginatedList<TodoItemDto>>, GetWithPaginationQueryHandler<TodoItem, TodoItemDto>>()
-            .AddScoped<IRequestHandler<ExportQuery<TodoItem, TodoItemRecord>, ExportData>, ExportQueryHandler<TodoItem, TodoItemRecord>>();
+            .AddScopedMediatR<ListTodo>()
+            .AddScopedMediatR<Todo>()
+            .AddScoped<IRequestHandler<GetWithPaginationQuery<Todo, TodoItemDto>, PaginatedList<TodoItemDto>>, GetWithPaginationQueryHandler<Todo, TodoItemDto>>()
+            .AddScoped<IRequestHandler<ExportQuery<Todo, TodoItemRecord>, ExportData>, ExportQueryHandler<Todo, TodoItemRecord>>();
 
     }
 

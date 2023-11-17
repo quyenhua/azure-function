@@ -4,7 +4,7 @@ using Domain.Entities;
 
 namespace Application.Models.Responses;
 
-public class TodoItemDto : IMapFrom<TodoItem>
+public class TodoItemDto : IMapFrom<Todo>
 {
     public int Id { get; set; }
 
@@ -20,7 +20,7 @@ public class TodoItemDto : IMapFrom<TodoItem>
 
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<TodoItem, TodoItemDto>()
+        profile.CreateMap<Todo, TodoItemDto>()
             .ForMember(d => d.Priority, opt => opt.MapFrom(s => (int)s.Priority));
     }
 }

@@ -3,7 +3,7 @@ using Domain.Entities;
 
 namespace Domain.Events;
 
-public class TodoItemCompletedEvent(TodoItem item) : DomainEvent
+public class TodoItemCompletedEvent(Todo item) : DomainEvent
 {
-    public TodoItem Item { get; } = item;
+    public Todo Item { get; } = item;
 }

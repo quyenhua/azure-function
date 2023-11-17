@@ -28,24 +28,24 @@ public class TodoItemsFunctions(IHttpRequestProcessor processor, ILogger<TodoIte
         {
             if (values.Contains("text/csv"))
             {
-                var request = new ExportQuery<TodoItem, TodoItemRecord>
+                var request = new ExportQuery<Todo, TodoItemRecord>
                 {
                     Predicate = _ => true,
                     FileName = "TodoItems"
                 };
-                return await _processor.ExecuteAsync<ExportQuery<TodoItem, TodoItemRecord>, ExportData>(functionContext,
+                return await _processor.ExecuteAsync<ExportQuery<Todo, TodoItemRecord>, ExportData>(functionContext,
                                                                     req,
                                                                     request,
                                                                     (r) => req.CreateFileContentResponseAsync(r.Content, r.ContentType, r.FileName));
             }
         }
 
-        var query = new GetWithPaginationQuery<TodoItem, TodoItemDto>
+        var query = new GetWithPaginationQuery<Todo, TodoItemDto>
         {
             Predicate = _ => true
         };
 
-        return await _processor.ExecuteAsync<GetWithPaginationQuery<TodoItem, TodoItemDto>, PaginatedList<TodoItemDto>>(functionContext,
+        return await _processor.ExecuteAsync<GetWithPaginationQuery<Todo, TodoItemDto>, PaginatedList<TodoItemDto>>(functionContext,
                                                             req,
                                                             query,
                                                             (r) => req.CreateObjectResponseAsync(r));
@@ -60,12 +60,12 @@ public class TodoItemsFunctions(IHttpRequestProcessor processor, ILogger<TodoIte
         logger.LogInformation("Called CreateTodoItems");
 
         var todoList = await req.ReadFromJsonAsync<TodoListRes>();
-        var command = new CreateCommand<TodoItem>
+        var command = new CreateCommand<Todo>
         {
-            Entity = new TodoItem { Id = id, Title = "Todo item" },
+            Entity = new Todo { ListId = id, Title = "Todo item" },
         };
 
-        return await _processor.ExecuteAsync<CreateCommand<TodoItem>, int>(functionContext,
+        return await _processor.ExecuteAsync<CreateCommand<Todo>, int>(functionContext,
                                                             req,
                                                             command,
                                                             (r) => req.CreateObjectCreatedResponseAsync($"todolists/{id}/items", r));

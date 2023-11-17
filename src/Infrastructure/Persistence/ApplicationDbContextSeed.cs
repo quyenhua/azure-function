@@ -31,20 +31,20 @@ public static class ApplicationDbContextSeed
         // Seed, if necessary
         if (!context.TodoLists.Any())
         {
-            context.TodoLists.Add(new TodoList
+            context.TodoLists.Add(new ListTodo
             {
                 Title = "Shopping",
                 Color = Colors.Blue,
                 Items =
                 {
-                    new TodoItem { Title = "Apples", Done = true },
-                    new TodoItem { Title = "Milk", Done = true },
-                    new TodoItem { Title = "Bread", Done = true },
-                    new TodoItem { Title = "Toilet paper" },
-                    new TodoItem { Title = "Pasta" },
-                    new TodoItem { Title = "Tissues" },
-                    new TodoItem { Title = "Tuna" },
-                    new TodoItem { Title = "Water" }
+                    new Todo { Title = "Apples", Done = true },
+                    new Todo { Title = "Milk", Done = true },
+                    new Todo { Title = "Bread", Done = true },
+                    new Todo { Title = "Toilet paper" },
+                    new Todo { Title = "Pasta" },
+                    new Todo { Title = "Tissues" },
+                    new Todo { Title = "Tuna" },
+                    new Todo { Title = "Water" }
                 }
             });
 

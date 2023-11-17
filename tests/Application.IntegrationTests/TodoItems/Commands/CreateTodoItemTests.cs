@@ -15,7 +15,7 @@ namespace Application.Features.IntegrationTests.TodoItems.Commands
         [Test]
         public void ShouldRequireMinimumFields()
         {
-            var command = new CreateCommand<TodoItem> { Entity = new TodoItem
+            var command = new CreateCommand<Todo> { Entity = new Todo
             {
                 Title = "Title"
             } };
@@ -29,17 +29,17 @@ namespace Application.Features.IntegrationTests.TodoItems.Commands
         {
             var userId = await RunAsDefaultUserAsync();
 
-            var listId = await SendAsync(new CreateCommand<TodoItem>
+            var listId = await SendAsync(new CreateCommand<Todo>
             {
-                Entity = new TodoItem
+                Entity = new Todo
                 {
                     Title = "New List"
                 }
             });
 
-            var command = new CreateCommand<TodoItem>()
+            var command = new CreateCommand<Todo>()
             {
-                Entity = new TodoItem
+                Entity = new Todo
                 {
                     ListId = listId,
                     Title = "Tasks"
@@ -48,7 +48,7 @@ namespace Application.Features.IntegrationTests.TodoItems.Commands
 
             var itemId = await SendAsync(command);
 
-            var item = await FindAsync<TodoItem>(itemId);
+            var item = await FindAsync<Todo>(itemId);
 
             item.Should().NotBeNull();
             item.ListId.Should().Be(command.Entity.ListId);

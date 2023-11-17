@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities;
 
-[Table(nameof(TodoList))]
-public class TodoList : AuditableEntity, IHasDomainEvent
+[Table(nameof(ListTodo))]
+public class ListTodo : AuditableEntity, IHasDomainEvent
 {
     public string Title { get; set; }
 
-    public Colors Color { get; set; } = Colors.White;
+    public string Color { get; set; } = Colors.White;
 
-    public IList<TodoItem> Items { get; private set; } = new List<TodoItem>();
+    public IList<Todo> Items { get; private set; } = new List<Todo>();
 
     public List<DomainEvent> DomainEvents { get; set; } = [];
 }

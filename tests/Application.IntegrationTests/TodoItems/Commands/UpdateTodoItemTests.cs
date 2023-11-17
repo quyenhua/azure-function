@@ -15,9 +15,9 @@ namespace Application.Features.IntegrationTests.TodoItems.Commands
         [Test]
         public void ShouldRequireValidTodoItemId()
         {
-            var command = new UpdateCommand<TodoItem>
+            var command = new UpdateCommand<Todo>
             {
-                Entity = new TodoItem
+                Entity = new Todo
                 {
                     Id = 99,
                     Title = "New Title"
@@ -33,26 +33,26 @@ namespace Application.Features.IntegrationTests.TodoItems.Commands
         {
             var userId = await RunAsDefaultUserAsync();
 
-            var listId = await SendAsync(new CreateCommand<TodoList>
+            var listId = await SendAsync(new CreateCommand<ListTodo>
             {
-                Entity = new TodoList
+                Entity = new ListTodo
                 {
                     Title = "New List"
                 }
             });
 
-            var itemId = await SendAsync(new CreateCommand<TodoItem>
+            var itemId = await SendAsync(new CreateCommand<Todo>
             {
-                Entity = new TodoItem
+                Entity = new Todo
                 {
                     ListId = listId,
                     Title = "New Item"
                 }
             });
 
-            var command = new UpdateCommand<TodoItem>
+            var command = new UpdateCommand<Todo>
             {
-                Entity = new TodoItem
+                Entity = new Todo
                 {
                     ListId = listId,
                     Title = "Updated New Item"
@@ -61,7 +61,7 @@ namespace Application.Features.IntegrationTests.TodoItems.Commands
 
             await SendAsync(command);
 
-            var item = await FindAsync<TodoItem>(itemId);
+            var item = await FindAsync<Todo>(itemId);
 
             item.Title.Should().Be(command.Entity.Title);
             item.LastModifiedBy.Should().NotBeNull();

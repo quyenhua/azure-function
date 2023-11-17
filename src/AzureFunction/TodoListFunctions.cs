@@ -21,9 +21,9 @@ public class TodoListFunctions(IHttpRequestProcessor processor, ILogger<TodoList
     {
         logger.LogInformation("Called GetTodos");
 
-        return await _processor.ExecuteAsync<FindByQuery<TodoList>, IQueryable<TodoList>>(functionContext,
+        return await _processor.ExecuteAsync<FindByQuery<ListTodo>, IQueryable<ListTodo>>(functionContext,
                                                             req,
-                                                            new FindByQuery<TodoList> { Predicate = _ => true },
+                                                            new FindByQuery<ListTodo> { Predicate = _ => true },
                                                             (r) => req.CreateObjectResponseAsync(r));
     }
 
@@ -35,16 +35,16 @@ public class TodoListFunctions(IHttpRequestProcessor processor, ILogger<TodoList
         logger.LogInformation("Called CreateTodosList");
 
         var todoList = await req.ReadFromJsonAsync<TodoListRes>();
-        var command = new CreateCommand<TodoList>
+        var command = new CreateCommand<ListTodo>
         {
-            Entity = new TodoList
+            Entity = new ListTodo
             {
                 Title = "Todo list",
                 Color = Colors.Blue
             }
         };
 
-        return await _processor.ExecuteAsync<CreateCommand<TodoList>, int>(functionContext,
+        return await _processor.ExecuteAsync<CreateCommand<ListTodo>, int>(functionContext,
                                                             req,
                                                             command,
                                                             (r) => req.CreateObjectCreatedResponseAsync("todolists", r));
@@ -59,16 +59,16 @@ public class TodoListFunctions(IHttpRequestProcessor processor, ILogger<TodoList
         logger.LogInformation("Called UpdateTodosList");
 
         var todoList = await req.ReadFromJsonAsync<TodoListRes>();
-        var request = new UpdateCommand<TodoList>
+        var request = new UpdateCommand<ListTodo>
         {
-            Entity = new TodoList
+            Entity = new ListTodo
             {
                 Id = id,
                 Title = todoList.Title
             }
         };
 
-        return await _processor.ExecuteAsync<UpdateCommand<TodoList>, int>(functionContext,
+        return await _processor.ExecuteAsync<UpdateCommand<ListTodo>, int>(functionContext,
                                                             req,
                                                             request,
                                                             (r) => req.CreateResponseAsync());
@@ -82,12 +82,12 @@ public class TodoListFunctions(IHttpRequestProcessor processor, ILogger<TodoList
     {
         logger.LogInformation("Called DeleteTodosList");
 
-        var request = new DeleteCommand<TodoList>
+        var request = new DeleteCommand<ListTodo>
         {
             Id = id
         };
 
-        return await _processor.ExecuteAsync<DeleteCommand<TodoList>, int>(functionContext,
+        return await _processor.ExecuteAsync<DeleteCommand<ListTodo>, int>(functionContext,
                                                             req,
                                                             request,
                                                             (r) => req.CreateResponseAsync(System.Net.HttpStatusCode.NoContent));

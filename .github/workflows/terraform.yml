@@ -55,10 +55,10 @@ env:
   CONFIGURATION: Release
   DOTNET_VERSION: 8.0.x
   WORKING_DIRECTORY: azure-function
-  CLIENT_ID: ${{ secrets.TF_VAR_AGENT_CLIENT_ID }}
-  CLIENT_SECRET: ${{ secrets.TF_VAR_AGENT_CLIENT_SECRET }}
-  SUBSCRIPTION_ID: ${{ secrets.TF_VAR_SUBSCRIPTION_ID }}
-  TENANT_ID: ${{ secrets.TF_VAR_TENANT_ID }}
+  TF_VAR_agent_client_id: ${{ secrets.TF_VAR_AGENT_CLIENT_ID }}
+  TF_VAR_agent_client_secret: ${{ secrets.TF_VAR_AGENT_CLIENT_SECRET }}
+  TF_VAR_subscription_id: ${{ secrets.TF_VAR_SUBSCRIPTION_ID }}
+  TF_VAR_tenant_id: ${{ secrets.TF_VAR_TENANT_ID }}
 
 jobs:
   terraform:
@@ -100,20 +100,10 @@ jobs:
         working-directory: ./terraform
         id: plan
         run: terraform plan
-        env:
-          TF_VAR_agent_client_id: ${{ env.CLIENT_ID }}
-          TF_VAR_agent_client_secret: ${{ env.CLIENT_SECRET }}
-          TF_VAR_subscription_id: ${{ env.SUBSCRIPTION_ID }}
-          TF_VAR_tenant_id: ${{ env.TENANT_ID }}
 
       - name: Terraform Apply
         working-directory: ./terraform
         run: terraform apply -auto-approve -input=false
-        env:
-          TF_VAR_agent_client_id: ${{ env.CLIENT_ID }}
-          TF_VAR_agent_client_secret: ${{ env.CLIENT_SECRET }}
-          TF_VAR_subscription_id: ${{ env.SUBSCRIPTION_ID }}
-          TF_VAR_tenant_id: ${{ env.TENANT_ID }}
 
   build-and-deploy:
     runs-on: windows-latest

@@ -1,0 +1,13 @@
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\bin\Debug\net8.0\Telemetry.deps.json
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\bin\Debug\net8.0\Telemetry.dll
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\bin\Debug\net8.0\Telemetry.pdb
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\obj\Debug\net8.0\Telemetry.csproj.AssemblyReference.cache
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\obj\Debug\net8.0\Telemetry.GeneratedMSBuildEditorConfig.editorconfig
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\obj\Debug\net8.0\Telemetry.AssemblyInfoInputs.cache
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\obj\Debug\net8.0\Telemetry.AssemblyInfo.cs
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\obj\Debug\net8.0\Telemetry.csproj.CoreCompileInputs.cache
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\obj\Debug\net8.0\Telemetry.sourcelink.json
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\obj\Debug\net8.0\Telemetry.dll
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\obj\Debug\net8.0\refint\Telemetry.dll
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\obj\Debug\net8.0\Telemetry.pdb
+F:\DC8\Paradigm\Upskills\azure-function\src\Telemetry\Telemetry\obj\Debug\net8.0\ref\Telemetry.dll

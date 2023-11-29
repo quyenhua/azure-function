@@ -97,14 +97,19 @@ jobs:
         id: plan
         run: terraform plan
         env:
-          TF_VAR_agent_client_id: ${{ secrets.AZURE_RBAC_CREDENTIALS.clientId }}
-          TF_VAR_agent_client_secret: ${{ secrets.AZURE_RBAC_CREDENTIALS.clientSecret }}
-          TF_VAR_subscription_id: ${{ secrets.AZURE_RBAC_CREDENTIALS.subscriptionId }}
-          TF_VAR_tenant_id: ${{ secrets.AZURE_RBAC_CREDENTIALS.tenantId }}
+          TF_VAR_agent_client_id: ${{ secrets.TF_VAR_agent_client_id }}
+          TF_VAR_agent_client_secret: ${{ secrets.TF_VAR_agent_client_secret }}
+          TF_VAR_subscription_id: ${{ secrets.TF_VAR_subscription_id }}
+          TF_VAR_tenant_id: ${{ secrets.TF_VAR_tenant_id }}
 
       - name: Terraform Apply
         working-directory: ./terraform
         run: terraform apply -auto-approve -input=false
+        env:
+          TF_VAR_agent_client_id: ${{ secrets.TF_VAR_agent_client_id }}
+          TF_VAR_agent_client_secret: ${{ secrets.TF_VAR_agent_client_secret }}
+          TF_VAR_subscription_id: ${{ secrets.TF_VAR_subscription_id }}
+          TF_VAR_tenant_id: ${{ secrets.TF_VAR_tenant_id }}
 
   build-and-deploy:
     runs-on: windows-latest

@@ -121,7 +121,9 @@ jobs:
       - name: "Login via Azure CLI"
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
+          client-id: ${{ env.TF_VAR_agent_client_id }}
+          tenant-id: ${{ env.TF_VAR_tenant_id }}
+          subscription-id: ${{ env.TF_VAR_subscription_id }}
 
       - name: Restore dependencies
         run: dotnet restore

@@ -4,7 +4,7 @@ terraform {
       source = "hashicorp/azurerm"
       # Root module should specify the maximum provider version
       # The ~> operator is a convenient shorthand for allowing only patch releases within a specific minor release.
-      version = ">= 3.80.0"
+      version = "~> 3.82.0"
     }
   }
 }

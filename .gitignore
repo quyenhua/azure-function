@@ -12,3 +12,6 @@
 /tests/Domain.UnitTests/obj
 /tests/Domain.UnitTests/bin
 /.vs
+
+/terraform/.terraform
+/terraform/.terraform.lock.hcl

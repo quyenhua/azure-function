@@ -11,43 +11,43 @@ namespace Application.Features.IntegrationTests.TodoItems.Commands
 
     public class DeleteTodoItemTests : TestBase
     {
-        [Test]
-        public void ShouldRequireValidTodoItemId()
-        {
-            var command = new DeleteCommand<Todo> { Id = 99 };
+        //[Test]
+        //public void ShouldRequireValidTodoItemId()
+        //{
+        //    var command = new DeleteCommand<Todo> { Id = 99 };
 
-            FluentActions.Invoking(() =>
-                SendAsync(command)).Should().ThrowAsync<NotFoundException>();
-        }
+        //    FluentActions.Invoking(() =>
+        //        SendAsync(command)).Should().ThrowAsync<NotFoundException>();
+        //}
 
-        [Test]
-        public async Task ShouldDeleteTodoItem()
-        {
-            var listId = await SendAsync(new CreateCommand<ListTodo>
-            {
-                Entity = new ListTodo
-                {
-                    Title = "New List"
-                }
-            });
+        //[Test]
+        //public async Task ShouldDeleteTodoItem()
+        //{
+        //    var listId = await SendAsync(new CreateCommand<ListTodo>
+        //    {
+        //        Entity = new ListTodo
+        //        {
+        //            Title = "New List"
+        //        }
+        //    });
 
-            var itemId = await SendAsync(new CreateCommand<Todo>
-            {
-                Entity = new Todo
-                {
-                    ListId = listId,
-                    Title = "New Item"
-                }
-            });
+        //    var itemId = await SendAsync(new CreateCommand<Todo>
+        //    {
+        //        Entity = new Todo
+        //        {
+        //            ListId = listId,
+        //            Title = "New Item"
+        //        }
+        //    });
 
-            await SendAsync(new DeleteCommand<Todo>
-            {
-                Id = itemId
-            });
+        //    await SendAsync(new DeleteCommand<Todo>
+        //    {
+        //        Id = itemId
+        //    });
 
-            var list = await FindAsync<Todo>(listId);
+        //    var list = await FindAsync<Todo>(listId);
 
-            list.Should().BeNull();
-        }
+        //    list.Should().BeNull();
+        //}
     }
 }

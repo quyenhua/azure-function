@@ -49,9 +49,6 @@ on:
     branches: ["master"]
   pull_request:
 
-permissions:
-  contents: read
-
 env:
   AZURE_FUNCTIONAPP_NAME: api-dev-function-app
   AZURE_FUNCTIONAPP_PACKAGE_PATH: azure-function\published
@@ -70,9 +67,6 @@ jobs:
         shell: bash
 
     steps:
-      - bash: az --version
-        displayName: "Show Azure CLI version"
-
       # Checkout the repository to the GitHub Actions runner
       - name: Checkout
         uses: actions/checkout@v3
@@ -83,10 +77,10 @@ jobs:
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      - name: "Login via Azure CLI"
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
+      - name: "Terraform Format"
+        id: fmt
+        run: terraform fmt
+
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
         working-directory: ./terraform
@@ -102,6 +96,11 @@ jobs:
         working-directory: ./terraform
         id: plan
         run: terraform plan
+        env:
+          TF_VAR_agent_client_id: ${{ secrets.AZURE_RBAC_CREDENTIALS.clientId }}
+          TF_VAR_agent_client_secret: ${{ secrets.AZURE_RBAC_CREDENTIALS.clientSecret }}
+          TF_VAR_subscription_id: ${{ secrets.AZURE_RBAC_CREDENTIALS.subscriptionId }}
+          TF_VAR_tenant_id: ${{ secrets.AZURE_RBAC_CREDENTIALS.tenantId }}
 
       - name: Terraform Apply
         working-directory: ./terraform

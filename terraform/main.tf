@@ -64,7 +64,7 @@ resource "azurerm_function_app" "function_app" {
   version                    = "~4"
 
   site_config {
-    linux_fx_version = "DOTNETCORE|Latest"
+    linux_fx_version = "DOTNETCORE|8.0"
   }
 
   lifecycle {

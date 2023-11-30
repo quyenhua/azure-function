@@ -53,7 +53,7 @@ resource "azurerm_linux_function_app" "function_app" {
   name                       = "${var.project}-${var.environment}-function-app"
   resource_group_name        = azurerm_resource_group.resource_group.name
   location                   = var.location
-  app_service_plan_id        = azurerm_app_service_plan.app_service_plan.id
+  service_plan_id        = azurerm_app_service_plan.app_service_plan.id
   app_settings = {
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.application_insights.instrumentation_key,
   }
@@ -61,7 +61,7 @@ resource "azurerm_linux_function_app" "function_app" {
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
 
   site_config {
-    application_stack = {
+    application_stack {
       dotnet_version = "8.0"
       use_dotnet_isolated_runtime = true
     }

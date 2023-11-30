@@ -7,6 +7,13 @@ terraform {
       version = "~> 3.82.0"
     }
   }
+
+  backend "azurerm" {
+    resource_group_name  = "cicd-resource-group"
+    storage_account_name = "cicdazurestorage"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {

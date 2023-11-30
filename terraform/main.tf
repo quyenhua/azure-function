@@ -42,10 +42,10 @@ resource "azurerm_app_service_plan" "app_service_plan" {
   name                = "${var.project}-${var.environment}-app-service-plan"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = var.location
-  kind                = "FunctionApp"
+
   sku {
     tier = "Dynamic"
-    size = "Y1"
+    size = "S1"
   }
 }
 
@@ -61,7 +61,11 @@ resource "azurerm_function_app" "function_app" {
   os_type = "linux"
   storage_account_name       = azurerm_storage_account.storage_account.name
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
-  version                    = "~3"
+  version                    = "~4"
+
+  site_config {
+    linux_fx_version = "DOTNET-ISOLATED|8.0"
+  }
 
   lifecycle {
     ignore_changes = [

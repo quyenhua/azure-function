@@ -6,14 +6,9 @@ using Microsoft.Extensions.Options;
 
 namespace Telemetry.AzureFunctions;
 
-internal sealed class TelemetryMiddleware : IFunctionsWorkerMiddleware
+internal sealed class TelemetryMiddleware(IOptions<TelemetryOptions> options) : IFunctionsWorkerMiddleware
 {
-    private readonly IOptions<TelemetryOptions> _options;
-
-    public TelemetryMiddleware(IOptions<TelemetryOptions> options)
-    {
-        _options = options;
-    }
+    private readonly IOptions<TelemetryOptions> _options = options;
 
     public async Task Invoke(FunctionContext context, FunctionExecutionDelegate next)
     {

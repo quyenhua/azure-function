@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.UnitTests", "tests\D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Telemetry", "Telemetry", "{CB68032B-8394-47C4-90C1-0E5E55D2B8ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telemetry", "src\Telemetry\Telemetry\Telemetry.csproj", "{110B541D-D770-461B-97F5-FD714999C23A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telemetry", "src\Telemetry\Telemetry\Telemetry.csproj", "{110B541D-D770-461B-97F5-FD714999C23A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telemetry.AzureFunctions", "src\Telemetry\Telemetry.AzureFunctions\Telemetry.AzureFunctions.csproj", "{9BE77B80-276F-49D4-ADEE-15F4B6835FF5}"
 EndProject

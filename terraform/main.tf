@@ -38,15 +38,12 @@ resource "azurerm_application_insights" "application_insights" {
   application_type    = "web"
 }
 
-resource "azurerm_app_service_plan" "app_service_plan" {
+resource "azurerm_service_plan" "app_service_plan" {
   name                = "${var.project}-${var.environment}-app-service-plan"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = var.location
-
-  sku {
-    tier = "Dynamic"
-    size = "S1"
-  }
+  os_type             = "Linux"
+  sku_name            = "Y1"
 }
 
 resource "azurerm_linux_function_app" "function_app" {

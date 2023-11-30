@@ -50,7 +50,7 @@ resource "azurerm_linux_function_app" "function_app" {
   name                       = "${var.project}-${var.environment}-function-app"
   resource_group_name        = azurerm_resource_group.resource_group.name
   location                   = var.location
-  service_plan_id        = azurerm_app_service_plan.app_service_plan.id
+  service_plan_id        = azurerm_service_plan.app_service_plan.id
   app_settings = {
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.application_insights.instrumentation_key,
   }

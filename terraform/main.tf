@@ -24,7 +24,7 @@ resource "azurerm_resource_group" "resource_group" {
 }
 
 resource "azurerm_storage_account" "storage_account" {
-  name = "${var.project}${var.environment}storage"
+  name = "${var.project}${var.environment}azurestorage"
   resource_group_name = azurerm_resource_group.resource_group.name
   location = var.location
   account_tier = "Standard"
@@ -45,8 +45,7 @@ resource "azurerm_app_service_plan" "app_service_plan" {
   kind                = "FunctionApp"
   reserved = true
   sku {
-    tier = "Dynamic"
-    size = "Y1"
+    tier = "Free"
   }
 }
 

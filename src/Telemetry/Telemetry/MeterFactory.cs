@@ -1,7 +1,7 @@
 using System.Diagnostics.Metrics;
 using Microsoft.Extensions.Options;
 
-namespace Telemetry.Telemetry;
+namespace Telemetry;
 /// <summary>
 /// Meter Factory to create global meter based on Telemetry Options Service Name.
 /// </summary>

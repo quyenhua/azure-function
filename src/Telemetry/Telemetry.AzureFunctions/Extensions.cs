@@ -1,7 +1,7 @@
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Hosting;
 
-namespace Telemetry.Telemetry.AzureFunctions;
+namespace Telemetry.AzureFunctions;
 
 public static class Extensions
 {

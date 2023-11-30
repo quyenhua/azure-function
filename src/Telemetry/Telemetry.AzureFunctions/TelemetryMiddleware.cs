@@ -4,7 +4,7 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Middleware;
 using Microsoft.Extensions.Options;
 
-namespace Telemetry.Telemetry.AzureFunctions;
+namespace Telemetry.AzureFunctions;
 
 internal sealed class TelemetryMiddleware : IFunctionsWorkerMiddleware
 {

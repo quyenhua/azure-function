@@ -1,4 +1,4 @@
-namespace Telemetry.Telemetry;
+namespace Telemetry;
 
 public class TelemetryOptions
 {

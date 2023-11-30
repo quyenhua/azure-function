@@ -8,7 +8,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace Telemetry.Telemetry;
+namespace Telemetry;
 
 public static class Extensions
 {

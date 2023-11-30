@@ -5,6 +5,10 @@
 /src/Domain/bin
 /src/Infrastructure/obj
 /src/Infrastructure/bin
+/src/Telemetry/Telemetry/obj
+/src/Telemetry/Telemetry/bin
+/src/Telemetry/Telemetry.AzureFunctions/obj
+/src/Telemetry/Telemetry.AzureFunctions/bin
 /tests/Application.IntegrationTests/obj
 /tests/Application.IntegrationTests/bin
 /tests/Application.UnitTests/obj
@@ -13,6 +17,7 @@
 /tests/Domain.UnitTests/bin
 /.vs
 /published
+
 
 /terraform/.terraform
 /terraform/.terraform.lock.hcl

@@ -43,9 +43,9 @@ resource "azurerm_app_service_plan" "app_service_plan" {
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = var.location
   kind                = "FunctionApp"
-  reserved = true
   sku {
-    tier = "Free"
+    tier = "Dynamic"
+    size = "Y1"
   }
 }
 

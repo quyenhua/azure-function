@@ -91,12 +91,9 @@ jobs:
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
-        uses: robertdebock/terraform-action@1.1.4
-        with:
-          action: init
-          directory: ./terraform
-        env:
-          TF_CLI_ARGS: "-backend-config='subscription_id=${env.TF_VAR_subscription_id}' -backend-config='tenant_id=${env.TF_VAR_tenant_id} -backend-config='client_id=${env.TF_VAR_agent_client_id} -backend-config='client_secret=${env.TF_VAR_agent_client_secret}'"
+        working-directory: ./terraform
+        id: init
+        run: terraform init -migrate-state
 
       - name: Terraform Validate
         working-directory: ./terraform

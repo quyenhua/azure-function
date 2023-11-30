@@ -13,6 +13,10 @@ terraform {
     storage_account_name = "cicdazurestorage"
     container_name       = "tfstate"
     key                  = "terraform.tfstate"
+    client_id = "fd10a5c5-0e96-4fe2-8b0d-97c9c30d1db5"
+    client_secret = "qc18Q~mYin5JXXRBOz7rNtkL8VZY~A_yCyi47aUG"
+    tenant_id = "67d26f01-57b8-4b3c-b894-986813aa047a"
+    subscription_id = "06db39db-61fb-47d6-b950-ad850ffd17cf"
   }
 }
 

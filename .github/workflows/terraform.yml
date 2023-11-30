@@ -123,11 +123,7 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: "Login via Azure CLI"
-        uses: azure/login@v1
-        with:
-          client-id: ${{ env.TF_VAR_agent_client_id }}
-          tenant-id: ${{ env.TF_VAR_tenant_id }}
-          subscription-id: ${{ env.TF_VAR_subscription_id }}
+        run: az login --service-principal --tenant ${{ env.TF_VAR_tenant_id }} --username ${{ env.TF_VAR_agent_client_id }} --password ${{ env.TF_VAR_agent_client_secret }}
 
       - name: Restore dependencies
         run: dotnet restore

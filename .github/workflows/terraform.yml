@@ -49,6 +49,10 @@ on:
     branches: ["master"]
   pull_request:
 
+permissions:
+  id-token: write
+  contents: read
+
 env:
   AZURE_FUNCTIONAPP_NAME: api-dev-function-app
   AZURE_FUNCTIONAPP_PACKAGE_PATH: azure-function\published

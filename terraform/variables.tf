@@ -35,3 +35,8 @@ variable "tenant_id" {
   type        = string
   description = "Azure tenant id."
 }
+
+variable "tags" {
+  type        = map(any)
+  description = "Specifies a map of tags to be applied to the resources created."
+}

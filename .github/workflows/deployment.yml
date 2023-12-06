@@ -1,0 +1,83 @@
+name: "Deployment"
+on:
+  workflow_dispatch:
+
+jobs:
+  Plan_Dev:
+    permissions: #Permission is required if enabling TFSEC == true
+      actions: read
+      contents: read
+      security-events: write
+    uses: azure-function/.github/workflows/az_tf_plan.yml@master
+    with:
+      path: terraform ## Path to terraform root module (Required)
+      tf_version: latest ## Terraform version e.g: 1.1.0 Default=latest (Optional)
+      az_resource_group: cicd-resource-group ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
+      az_storage_acc: cicdazurestorage ## AZ backend - AZURE terraform backend storage acc (Required)
+      az_container_name: tfstatedeploymentdev ## AZ backend - AZURE storage container hosting state files (Required)
+      tf_key: deployment-dev ## AZ backend - Specifies name that will be given to terraform state file and plan artifact (Required)
+      tf_vars_file: dev.tfvars ## Terraform TFVARS (Required)
+      enable_TFSEC: true ## (Optional)  Enable TFSEC IaC scans (Private repo requires GitHub enterprise)
+    secrets:
+      tf_api_key: ${{secrets.TF_API_TOKEN }}
+      arm_client_id: ${{ secrets.BE_CLIENT_ID }} ## ARM Client ID
+      arm_client_secret: ${{ secrets.BE_CLIENT_SECRET }} ## ARM Client Secret
+      arm_subscription_id: ${{ secrets.BE_SUBSCRIPTION_ID }} ## ARM Subscription ID
+      arm_tenant_id: ${{ secrets.BE_TENANT_ID }} ## ARM Tenant ID
+
+  Deploy_Dev:
+    needs: Plan_Dev
+    uses: azure-function/az_tf_apply.yml@master
+    with:
+      path: terraform ## Path to terraform root module (Required)
+      tf_version: latest ## Terraform version e.g: 1.1.0 Default=latest (Optional)
+      az_resource_group: cicd-resource-group ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
+      az_storage_acc: cicdazurestorage ## AZ backend - AZURE terraform backend storage acc (Required)
+      az_container_name: tfstatedeploymentdev ## AZ backend - AZURE storage container hosting state files (Required)
+      tf_key: deployment-dev ## AZ backend - Specifies name that will be given to terraform state file and plan artifact (Required)
+      gh_environment: dev ## GH Environment. Default=null - (Optional)
+    secrets:
+      tf_api_key: ${{secrets.TF_API_TOKEN }}
+      arm_client_id: ${{ secrets.BE_CLIENT_ID }} ## ARM Client ID
+      arm_client_secret: ${{ secrets.BE_CLIENT_SECRET }} ## ARM Client Secret
+      arm_subscription_id: ${{ secrets.BE_SUBSCRIPTION_ID }} ## ARM Subscription ID
+      arm_tenant_id: ${{ secrets.BE_TENANT_ID }} ## ARM Tenant ID
+
+  Plan_Prod:
+    permissions: #Permission is required if enabling TFSEC == true
+      actions: read
+      contents: read
+      security-events: write
+    uses: azure-function/.github/workflows/az_tf_plan.yml@master
+    with:
+      path: terraform ## Path to terraform root module (Required)
+      tf_version: latest ## Terraform version e.g: 1.1.0 Default=latest (Optional)
+      az_resource_group: cicd-resource-group ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
+      az_storage_acc: cicdazurestorage ## AZ backend - AZURE terraform backend storage acc (Required)
+      az_container_name: tfstatedeploymentprod ## AZ backend - AZURE storage container hosting state files (Required)
+      tf_key: deployment-prod ## AZ backend - Specifies name that will be given to terraform state file and plan artifact (Required)
+      tf_vars_file: prod.tfvars ## Terraform TFVARS (Required)
+      enable_TFSEC: true ## (Optional)  Enable TFSEC IaC scans (Private repo requires GitHub enterprise)
+    secrets:
+      tf_api_key: ${{secrets.TF_API_TOKEN }}
+      arm_client_id: ${{ secrets.BE_CLIENT_ID }} ## ARM Client ID
+      arm_client_secret: ${{ secrets.BE_CLIENT_SECRET }} ## ARM Client Secret
+      arm_subscription_id: ${{ secrets.BE_SUBSCRIPTION_ID }} ## ARM Subscription ID
+      arm_tenant_id: ${{ secrets.BE_TENANT_ID }} ## ARM Tenant ID
+
+  Deploy_Prod:
+    needs: [Plan_Prod, Deploy_Dev]
+    uses: azure-function/.github/workflows/az_tf_apply.yml@master
+    with:
+      path: terraform ## Path to terraform root module (Required)
+      az_resource_group: cicd-resource-group ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
+      az_storage_acc: cicdazurestorage ## AZ backend - AZURE terraform backend storage acc (Required)
+      az_container_name: tfstatedeploymentprod ## AZ backend - AZURE storage container hosting state files (Required)
+      tf_key: deployment-prod ## AZ backend - Specifies name that will be given to terraform state file and plan artifact (Required)
+      gh_environment: prod ## GH Environment. Default=null - (Optional)
+    secrets:
+      tf_api_key: ${{secrets.TF_API_TOKEN }}
+      arm_client_id: ${{ secrets.BE_CLIENT_ID }} ## ARM Client ID
+      arm_client_secret: ${{ secrets.BE_CLIENT_SECRET }} ## ARM Client Secret
+      arm_subscription_id: ${{ secrets.BE_SUBSCRIPTION_ID }} ## ARM Subscription ID
+      arm_tenant_id: ${{ secrets.BE_TENANT_ID }} ## ARM Tenant ID

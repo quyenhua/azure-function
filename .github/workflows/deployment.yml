@@ -27,7 +27,7 @@ jobs:
 
   Deploy_Dev:
     needs: Plan_Dev
-    uses: quyenhua/azure-function/az_tf_apply.yml@dev
+    uses: quyenhua/azure-function/.github/workflows/az_tf_apply.yml@dev
     with:
       path: terraform ## Path to terraform root module (Required)
       tf_version: latest ## Terraform version e.g: 1.1.0 Default=latest (Optional)

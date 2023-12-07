@@ -1,19 +1,29 @@
 variable "project" {
-  type = string
+  type        = string
   description = "Project name"
-  default="api"
+  default     = "api"
 }
 
 variable "environment" {
-  type = string
+  type        = string
   description = "Environment (dev / stage / prod)"
-  default="dev"
+  default     = "dev"
 }
 
 variable "location" {
   type        = string
   description = "Azure region where to create resources."
-  default="Australia Central"
+  default     = "Australia Central"
+}
+
+variable "resource_group_name" {
+  type        = string
+  description = "Backend resource group name."
+}
+
+variable "account_name" {
+  type        = string
+  description = "Backend account name."
 }
 
 variable "agent_client_id" {

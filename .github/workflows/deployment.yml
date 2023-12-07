@@ -13,7 +13,7 @@ on:
 
 jobs:
   Plan_Dev:
-    if: ${{github.event.pull_request.base.ref == 'dev' && github.event_name == 'pull_request'}}
+    if: ${{github.ref == 'refs/heads/dev' && (github.event_name == 'pull_request' || github.event_name == 'push')}}
     permissions: #Permission is required if enabling TFSEC == true
       actions: read
       contents: read
@@ -36,7 +36,7 @@ jobs:
       arm_tenant_id: ${{ secrets.BE_TENANT_ID }} ## ARM Tenant ID
 
   Deploy_Dev:
-    if: ${{github.event.pull_request.base.ref == 'dev' && github.event_name == 'push'}}
+    if: ${{github.ref == 'refs/heads/dev' && github.event_name == 'push'}}
     needs: Plan_Dev
     uses: ./.github/workflows/az_tf_apply.yml
     with:
@@ -55,7 +55,7 @@ jobs:
       arm_tenant_id: ${{ secrets.BE_TENANT_ID }} ## ARM Tenant ID
 
   Plan_Prod:
-    if: ${{github.event.pull_request.base.ref == 'master' && github.event_name == 'pull_request'}}
+    if: ${{github.ref == 'refs/heads/master' && (github.event_name == 'pull_request' || github.event_name == 'push')}}
     permissions: #Permission is required if enabling TFSEC == true
       actions: read
       contents: read
@@ -78,7 +78,7 @@ jobs:
       arm_tenant_id: ${{ secrets.BE_TENANT_ID }} ## ARM Tenant ID
 
   Deploy_Prod:
-    if: ${{github.event.pull_request.base.ref == 'master' && github.event_name == 'push'}}
+    if: ${{github.ref == 'refs/heads/master' && github.event_name == 'push'}}
     needs: [Plan_Prod, Deploy_Dev]
     uses: ./.github/workflows/az_tf_apply.yml
     with:

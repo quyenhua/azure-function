@@ -32,7 +32,7 @@ jobs:
       tf_api_key: ${{secrets.TF_API_TOKEN }}
       arm_client_id: ${{ secrets.BE_CLIENT_ID }} ## ARM Client ID
       arm_client_secret: ${{ secrets.BE_CLIENT_SECRET }} ## ARM Client Secret
-      arm_subscription_id: ${{ secrets.BE_SUBSCRIPTION_ID }} ## ARM Subscription ID
+      arm_subscription_id: ${{ secrets.SUBSCRIPTION_ID }} ## ARM Subscription ID
       arm_tenant_id: ${{ secrets.BE_TENANT_ID }} ## ARM Tenant ID
 
   Deploy_Dev:

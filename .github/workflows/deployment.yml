@@ -55,6 +55,7 @@ jobs:
       arm_tenant_id: ${{ secrets.BE_TENANT_ID }} ## ARM Tenant ID
 
   Plan_Prod:
+    if: ${{github.event.pull_request.base.ref == 'master' && github.event_name == 'pull_request'}}
     permissions: #Permission is required if enabling TFSEC == true
       actions: read
       contents: read

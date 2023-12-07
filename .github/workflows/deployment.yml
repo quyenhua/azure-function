@@ -1,9 +1,19 @@
 name: "Deployment"
 on:
+  push:
+    branches:
+      - dev
+      - master
+  pull_request:
+    types: [opened, reopened]
+    branches:
+      - dev
+      - master
   workflow_dispatch:
 
 jobs:
   Plan_Dev:
+    if: ${{github.event.pull_request.base.ref == 'dev' && github.event_name == 'pull_request'}}
     permissions: #Permission is required if enabling TFSEC == true
       actions: read
       contents: read
@@ -26,6 +36,7 @@ jobs:
       arm_tenant_id: ${{ secrets.BE_TENANT_ID }} ## ARM Tenant ID
 
   Deploy_Dev:
+    if: ${{github.event.pull_request.base.ref == 'dev' && github.event_name == 'push'}}
     needs: Plan_Dev
     uses: quyenhua/azure-function/.github/workflows/az_tf_apply.yml@dev
     with:
@@ -66,6 +77,7 @@ jobs:
       arm_tenant_id: ${{ secrets.BE_TENANT_ID }} ## ARM Tenant ID
 
   Deploy_Prod:
+    if: ${{github.event.pull_request.base.ref == 'master' && github.event_name == 'push'}}
     needs: [Plan_Prod, Deploy_Dev]
     uses: quyenhua/azure-function/.github/workflows/az_tf_apply.yml@master
     with:

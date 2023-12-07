@@ -18,7 +18,7 @@ jobs:
       actions: read
       contents: read
       security-events: write
-    uses: quyenhua/azure-function/.github/workflows/az_tf_plan.yml
+    uses: ./.github/workflows/az_tf_plan.yml
     with:
       path: terraform ## Path to terraform root module (Required)
       tf_version: latest ## Terraform version e.g: 1.1.0 Default=latest (Optional)
@@ -38,7 +38,7 @@ jobs:
   Deploy_Dev:
     if: ${{github.event.pull_request.base.ref == 'dev' && github.event_name == 'push'}}
     needs: Plan_Dev
-    uses: quyenhua/azure-function/.github/workflows/az_tf_apply.yml
+    uses: ./.github/workflows/az_tf_apply.yml
     with:
       path: terraform ## Path to terraform root module (Required)
       tf_version: latest ## Terraform version e.g: 1.1.0 Default=latest (Optional)
@@ -60,7 +60,7 @@ jobs:
       actions: read
       contents: read
       security-events: write
-    uses: quyenhua/azure-function/.github/workflows/az_tf_plan.yml
+    uses: ./.github/workflows/az_tf_plan.yml
     with:
       path: terraform ## Path to terraform root module (Required)
       tf_version: latest ## Terraform version e.g: 1.1.0 Default=latest (Optional)
@@ -80,7 +80,7 @@ jobs:
   Deploy_Prod:
     if: ${{github.event.pull_request.base.ref == 'master' && github.event_name == 'push'}}
     needs: [Plan_Prod, Deploy_Dev]
-    uses: quyenhua/azure-function/.github/workflows/az_tf_apply.yml
+    uses: ./.github/workflows/az_tf_apply.yml
     with:
       path: terraform ## Path to terraform root module (Required)
       az_resource_group: cicd-resource-group ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)

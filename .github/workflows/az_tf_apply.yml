@@ -52,6 +52,7 @@ on:
 
 jobs:
   apply-plan:
+    name: Apply plan
     runs-on: ubuntu-latest
     environment: ${{ inputs.gh_environment }}
     defaults:
@@ -82,7 +83,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3.0.0
         with:
-          terraform_version: ${{ inputs.tf_version }}
+          # terraform_version: ${{ inputs.tf_version }}
           cli_config_credentials_token: ${{ secrets.tf_api_key }}
 
       - name: Terraform Init

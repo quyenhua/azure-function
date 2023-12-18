@@ -101,7 +101,7 @@ jobs:
         working-directory: ./terraform
         id: init
         run: |
-        terraform init --migrate-state \
+          terraform init --migrate-state \
           --backend-config="subscription_id=$TF_VAR_SUBSCRIPTION_ID" \
           --backend-config="tenant_id=$ARM_TENANT_ID" \
           --backend-config="client_id=$ARM_CLIENT_ID" \

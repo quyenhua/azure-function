@@ -16,6 +16,26 @@ variable "location" {
   default     = "Australia Central"
 }
 
+variable "agent_client_id" {
+  type        = string
+  description = "Azure agent client id."
+}
+
+variable "agent_client_secret" {
+  type        = string
+  description = "Azure agent client secret"
+}
+
+variable "subscription_id" {
+  type        = string
+  description = "Azure subscription id."
+}
+
+variable "tenant_id" {
+  type        = string
+  description = "Azure tenant id."
+}
+
 variable "tags" {
   type        = map(any)
   description = "Specifies a map of tags to be applied to the resources created."

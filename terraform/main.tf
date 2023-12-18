@@ -26,12 +26,6 @@ resource "azurerm_resource_group" "resource_group" {
   tags = var.tags
 }
 
-resource "azurerm_app_configuration" "appconf" {
-  name                = "${var.project}${var.environment}AppConf"
-  resource_group_name = azurerm_resource_group.resource_group.name
-  location            = azurerm_resource_group.resource_group.location
-}
-
 resource "azurerm_storage_account" "storage_account" {
   name = "${var.project}${var.environment}azurestorage"
   resource_group_name = azurerm_resource_group.resource_group.name

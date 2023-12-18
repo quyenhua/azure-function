@@ -8,16 +8,7 @@ terraform {
     }
   }
 
-  backend "azurerm" {
-    resource_group_name  = "cicd-resource-group"
-    storage_account_name = "cicdazurestorage"
-    container_name       = "tfstatedev"
-    key                  = "terraform.tfstate"
-    client_id = "a3af047d-a031-46e4-adff-75ebb742aed2"
-    client_secret = "zNB8Q~2Jl~.5EM0uWivyH~QU1lVgAkEU2GiPBcgJ"
-    tenant_id = "67d26f01-57b8-4b3c-b894-986813aa047a"
-    subscription_id = "06db39db-61fb-47d6-b950-ad850ffd17cf"
-  }
+  backend "azurerm" {}
 }
 
 provider "azurerm" {
@@ -33,6 +24,12 @@ resource "azurerm_resource_group" "resource_group" {
   name = "${var.project}-${var.environment}-resource-group"
   location = var.location
   tags = var.tags
+}
+
+resource "azurerm_app_configuration" "appconf" {
+  name                = "appConf"
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
 }
 
 resource "azurerm_storage_account" "storage_account" {

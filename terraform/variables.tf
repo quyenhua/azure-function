@@ -16,16 +16,6 @@ variable "location" {
   default     = "Australia Central"
 }
 
-variable "resource_group_name" {
-  type        = string
-  description = "Backend resource group name."
-}
-
-variable "account_name" {
-  type        = string
-  description = "Backend account name."
-}
-
 variable "agent_client_id" {
   type        = string
   description = "Azure agent client id."

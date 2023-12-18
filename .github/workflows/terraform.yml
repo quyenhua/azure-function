@@ -119,7 +119,7 @@ jobs:
       - name: Terraform Plan
         working-directory: ./terraform
         id: plan
-        run: terraform plan --var-file=${{ env.TF_VARS }} --out=plan.tfplan
+        run: terraform plan --var-file=${{ env.TF_VARS }}
 
       - name: Terraform Apply
         working-directory: ./terraform
